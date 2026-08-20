@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Uncover — local offers, shop flyers and announcements near you.">
+  <title>Uncover — Local Offers Near You</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Uncover home">
+      <span class="brand-dot"></span>
+      <span><style="color:red;">Un</style>cover</span>
+    </a>
+    <span class="location-pill" id="locationText">Kerala · Local</span>
+	<button id="theme-toggle">Switch Theme</button>
+  </header>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="eyebrow">LOCAL • FRESH • NEAR YOU</div>
+        <h1>What's happening<br><em>near you?</em></h1>
+        <p>Discover shop flyers, offers, hot spots and local announcements in one place.</p>
+        <button class="primary-btn" id="locateBtn">Find offers near me <span>↗</span></button>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">TRENDING NOW</span>
+          <h2>Local picks</h2>
+        </div>
+        <button class="text-btn" data-tab="explore">See all</button>
+      </div>
+
+      <div class="feed-grid" id="offerGrid"></div>
+    </section>
+
+    <section id="explore" class="page">
+      <div class="page-heading">
+        <span class="section-kicker">EXPLORE</span>
+        <h1>Find what you need.</h1>
+        <p>Search local businesses and filter offers by category.</p>
+      </div>
+
+      <label class="search-box">
+        <span>🔎</span>
+        <input id="searchInput" type="search" placeholder="Search shops, offers, places..." autocomplete="off">
+      </label>
+
+      <div class="chips" id="categoryChips">
+        <button class="chip active" data-category="All">All</button>
+        <button class="chip" data-category="Supermarket">Supermarket</button>
+        <button class="chip" data-category="Textiles">Textiles</button>
+        <button class="chip" data-category="Dining">Dining</button>
+        <button class="chip" data-category="Services">Services</button>
+      </div>
+
+      <div class="explore-list" id="exploreList"></div>
+    </section>
+
+    <section id="about" class="page">
+      <div class="about-card">
+        <span class="section-kicker">ABOUT UNCOVER</span>
+        <h1>Local life,<br><em>made easier.</em></h1>
+        <p>Uncover is a beginner-friendly mobile-first web project for discovering local shop flyers, sales, offers and announcements.</p>
+
+        <div class="stats">
+          <div><strong>01</strong><span>Home</span></div>
+          <div><strong>02</strong><span>Explore</span></div>
+          <div><strong>03</strong><span>About</span></div>
+        </div>
+
+        <div class="info-note">
+          <strong>Project stack</strong>
+          <span>HTML · CSS · JavaScript · GitHub Pages</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" data-tab="home">
+      <span class="nav-icon">🏠</span><span>Home</span>
+    </button>
+    <button class="nav-item" data-tab="explore">
+      <span class="nav-icon">🔍</span><span>Explore</span>
+    </button>
+    <button class="nav-item" data-tab="about">
+      <span class="nav-icon">ℹ️</span><span>About</span>
+    </button>
+  </nav>
+  <script>
+    const button = document.getElementById('theme-toggle');
+    // Listen for the user clicking the button
+    button.addEventListener('click', () => {
+      // Toggle the .dark-mode class on the body element
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
+  <script src="js/app.js"></script>
+</body>
+</html>
