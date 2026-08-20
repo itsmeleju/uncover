@@ -27,7 +27,7 @@ Open `index.html` in a browser, or use the VS Code Live Server extension.
 6. Save.
 7. GitHub will provide the Pages URL.
 
-For a URL like <https://itsmeleju.github.io/uncover/>
+For a URL like <https://noobiedevs.github.io/uncover/>
 
 ## Next development steps
 
