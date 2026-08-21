@@ -4,6 +4,21 @@
 ================================ */
 
 :root {
+  /* Dynamic Background Gradient (Light Mode) */
+  --bg-gradient: linear-gradient(
+    135deg, 
+    #f8fafc 0%,   /* Your base slate background */
+    #edf4ed 50%,  /* Ultra-lite tint shifting toward your theme green */
+    #f1f5f9 100%
+  );
+  /* Glassmorphism Variables (Light Mode) */
+  --bg-color: #f8fafc;
+  --text-color: #123b36;
+  --card-bg: rgba(255, 255, 255, 0.45); /* High transparency for glass effect */
+  --topbar-bg: rgba(255, 255, 255, 0.65); /* Perfectly balanced frosted glass */
+  --btn-bg: #eef5ed;
+  --btn-text: #123b36;
+  --line: rgba(18, 59, 54, 0.08); /* Softened lines to match glass aesthetic */
   /* Default Light Mode Variables */
   --bg-color: #f8fafc;
   --text-color: #123b36;
@@ -11,7 +26,7 @@
   --topbar-bg: rgba(255, 255, 255, 0.75);
   --btn-bg: #eef5ed;
   --btn-text: #123b36;
-  --line: rgba(18, 59, 54, 0.12);
+  --line: rgba(18, 59, 54, 0.12)
   --muted: #6f7f7b;
 
   /* Theme Accents */
@@ -19,20 +34,30 @@
   --green-800: #125247;
   --green-700: #176455;
   --gold: #e5a72b;
+  --shadow: 0 16px 40px rgba(6, 47, 42, 0.04); /* Softened shadow for clean light mode */
   --shadow: 0 18px 50px rgba(6, 47, 42, 0.12);
   --radius: 22px;
+  
+  /* Translucent white border to simulate real glass edge reflections */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.6); 
+  --glass-blur: blur(14px);
 }
 
 /* Dark Mode Overrides (Controlled via body.dark-mode) */
 body.dark-mode {
+  /* Flat clean background for dark mode to optimize readability */
+  --bg-gradient: none; 
   --bg-color: #0f172a;
+  
   --text-color: #f1f5f9;
-  --card-bg: #1e293b;
+  --card-bg: rgba(30, 41, 59, 0.7); /* Dark mode translucent glass */
   --topbar-bg: rgba(15, 23, 42, 0.75);
   --btn-bg: #1e293b;
   --btn-text: #f1f5f9;
   --line: rgba(255, 255, 255, 0.12);
-  --muted: #94a3b8;
+  --muted: #94a3b8;  
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(12px);
 }
 
 * { box-sizing: border-box; }
@@ -41,11 +66,12 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--bg-color);
+  background: var(--bg-gradient); /* Uses the new responsive gradient map */
+  background-color: var(--bg-color); /* Fallback safety */
   color: var(--text-color);
   font-family: "DM Sans", system-ui, sans-serif;
   padding: 1rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -69,7 +95,8 @@ button {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background: none;
+  /*background: none;*/
+  background: transparent;
   border: none;
   padding: 8px;
   transition: transform 0.3s ease;
@@ -80,9 +107,11 @@ button {
   height: 24px;
 }
 
-body:not(.dark-theme) .sun-icon { display: none; }
-body:not(.dark-theme) .moon-icon { display: block; }
-/* Dark Mode state: Show Sun, Hide Moon */
+/* Default State (Light Mode) */
+.sun-icon { display: none; }
+.moon-icon { display: block; }
+
+/* Dark Mode State */
 body.dark-theme .sun-icon { display: block; }
 body.dark-theme .moon-icon { display: none; }
 
@@ -91,16 +120,19 @@ body.dark-theme .moon-icon { display: none; }
 }
 
 .topbar {
-  height: 72px;
+  margin-bottom: 0px !important; 
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 clamp(20px, 5vw, 72px);
-  background: var(--topbar-bg);
+    background: var(--topbar-bg);
+  background: var(--card-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
+  border-radius: var(--radius);
+  border: var(--glass-border);
+  box-shadow: var(--shadow);
   position: sticky;
+  justify-content: space-between;
   top: 0;
   z-index: 20;
   transition: background 0.3s ease, border-color 0.3s ease;
@@ -132,6 +164,8 @@ body.dark-theme .moon-icon { display: none; }
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 700;
+  margin-left: auto;
+  margin-right: 16px; /* Adjust this value (12px to 20px) until it looks perfect */
 }
 
 .page {
@@ -153,9 +187,11 @@ body.dark-theme .moon-icon { display: none; }
 
 /* Reference-inspired hero: strong serif heading + dark panel + gold accent */
 .hero {
-  min-height: 470px;
+  margin-top: 0px !important; 
+  padding-top: 18px !important;
+
   border-radius: 0 0 34px 34px;
-  padding: clamp(42px, 8vw, 92px) clamp(24px, 7vw, 90px);
+  padding: clamp(42px, 8vw, 92px) clamp(10px, 7vw, 50px);
   color: white;
   background:
     linear-gradient(rgba(6,47,42,.96), rgba(6,47,42,.96)),
@@ -167,11 +203,11 @@ body.dark-theme .moon-icon { display: none; }
   place-items: center;
 }
 
-.hero > * { max-width: 760px; }
+.hero > * { max-width: 680px; }
 
 .eyebrow, .section-kicker {
   color: var(--gold);
-  font-size: .72rem;
+  font-size: .90rem;
   font-weight: 800;
   letter-spacing: .16em;
 }
@@ -522,7 +558,7 @@ em {
 }
 
 @media (max-width: 560px) {
-  .topbar { height: 64px; padding: 0 16px; }
+  .topbar { height: 64px; padding: 0 20px; }
   .location-pill { font-size: .7rem; }
   .page { padding: 25px 14px 115px; }
   .hero {
