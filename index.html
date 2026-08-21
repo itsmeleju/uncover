@@ -5,19 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Uncover — local offers, shop flyers and announcements near you.">
   <title>Uncover — Local Offers Near You</title>
+  <link rel="icon" type="image/x-icon" href="static/logo.svg">
+  <!-- Preconnect and Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#home" aria-label="Uncover home">
       <span class="brand-dot"></span>
-      <span><style="color:red;">Un</style>cover</span>
+      <span><span style="color:green;">Un</span>cover</span>
     </a>
     <span class="location-pill" id="locationText">Kerala · Local</span>
-	<button id="theme-toggle">Switch Theme</button>
+ <button class="theme" id="theme-toggle" type="button" aria-label="Toggle Theme">
+  <!-- Sun Icon (Hidden in Light Mode, Shows in Dark Mode) -->
+  <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M17.72 17.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M17.72 6.28l1.06-1.06M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+  </svg>
+  
+  <!-- Moon Icon (Shows in Light Mode, Hidden in Dark Mode) -->
+  <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+  </svg>
+</button>
   </header>
 
   <main>
@@ -31,7 +45,7 @@
 
       <div class="section-head">
         <div>
-          <span class="section-kicker">TRENDING NOW</span>
+          <span class="section-kicker">TRENDING NOW 🔥</span>
           <h2>Local picks</h2>
         </div>
         <button class="text-btn" data-tab="explore">See all</button>
@@ -42,7 +56,7 @@
 
     <section id="explore" class="page">
       <div class="page-heading">
-        <span class="section-kicker">EXPLORE</span>
+        <span class="section-kicker">EXPLORE 🧭</span>
         <h1>Find what you need.</h1>
         <p>Search local businesses and filter offers by category.</p>
       </div>
@@ -94,14 +108,7 @@
       <span class="nav-icon">ℹ️</span><span>About</span>
     </button>
   </nav>
-  <script>
-    const button = document.getElementById('theme-toggle');
-    // Listen for the user clicking the button
-    button.addEventListener('click', () => {
-      // Toggle the .dark-mode class on the body element
-      document.body.classList.toggle('dark-mode');
-    });
-  </script>
+
   <script src="js/app.js"></script>
 </body>
 </html>
