@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background: Lush Tropical Green -->
+  <rect width="512" height="512" rx="120" fill="#0A5F38"/>
+  
+  <!-- Letter 'U': Kasavu Gold -->
+  <path d="M176 144v144c0 44.2 35.8 80 80 80s80-35.8 80-80V144h64v144c0 79.5-64.5 144-144 144s-144-64.5-144-144V144h64z" fill="#D4AF37"/>
+</svg>
