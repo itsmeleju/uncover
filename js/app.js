@@ -32,6 +32,15 @@ let activeCategory = "All";
 function renderExplore() {
   const query = searchInput.value.trim().toLowerCase();
 
+// Theme Toggle Functionality
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+}
+
   const filtered = offers.filter(item => {
     const matchesCategory = activeCategory === "All" || item.category === activeCategory;
     const searchable = `${item.shop} ${item.title} ${item.text} ${item.category}`.toLowerCase();
