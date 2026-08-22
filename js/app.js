@@ -12,6 +12,45 @@ const exploreList = document.querySelector("#exploreList");
 const searchInput = document.querySelector("#searchInput");
 const categoryChips = document.querySelector("#categoryChips");
 
+// --- GLIDER POSITIONING & TAB SWITCHING LOGIC ---
+function updateNavGlider(targetBtn) {
+  const glider = document.getElementById('navGlider');
+  const navContainer = document.getElementById('bottomNav');
+  if (!glider || !targetBtn || !navContainer) return;
+
+  const navLeft = navContainer.getBoundingClientRect().left;
+  const btnLeft = targetBtn.getBoundingClientRect().left;
+  
+  // Calculate relative offset and match button width
+  const offsetLeft = btnLeft - navLeft - 6; // Accounts for 6px container padding
+  glider.style.width = `${targetBtn.offsetWidth}px`;
+  glider.style.transform = `translateX(${offsetLeft}px)`;
+}
+
+function switchNavTab(buttonEl, tabName) {
+  // Update button active state
+  document.querySelectorAll('.bottom-nav-pill .nav-item').forEach(btn => btn.classList.remove('active'));
+  buttonEl.classList.add('active');
+
+  // Move slide glider
+  updateNavGlider(buttonEl);
+
+  // Switch actual page tab view if container sections exist
+  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+  const targetSection = document.getElementById('tab-' + tabName);
+  if (targetSection) targetSection.classList.add('active');
+}
+
+// Position glider under the active button on initial page load
+window.addEventListener('DOMContentLoaded', () => {
+  const activeBtn = document.querySelector('.bottom-nav-pill .nav-item.active');
+  if (activeBtn) updateNavGlider(activeBtn);
+});
+window.addEventListener('resize', () => {
+  const activeBtn = document.querySelector('.bottom-nav-pill .nav-item.active');
+  if (activeBtn) updateNavGlider(activeBtn);
+});
+
 function renderHome() {
   offerGrid.innerHTML = offers.slice(0, 6).map(item => `
     <article class="offer-card">
@@ -31,15 +70,36 @@ let activeCategory = "All";
 
 function renderExplore() {
   const query = searchInput.value.trim().toLowerCase();
-
+ 
 // Theme Toggle Functionality
 const themeToggleBtn = document.getElementById('theme-toggle');
-
+// 1. Toggle the class on the body for your other styling
 if (themeToggleBtn) {
   themeToggleBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
   });
 }
+
+// Robust JS to force the swap, bypassing any CSS cache issues
+
+  const sunIcon = document.querySelector('.sun-icon');
+  const moonIcon = document.querySelector('.moon-icon');
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      
+      document.body.classList.toggle('dark-theme');
+      
+      // 2. Forcibly swap the icons directly using JavaScript
+      if (document.body.classList.contains('dark-theme')) {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+    });
+  }
 
   const filtered = offers.filter(item => {
     const matchesCategory = activeCategory === "All" || item.category === activeCategory;
@@ -100,8 +160,7 @@ document.querySelector("#locateBtn").addEventListener("click", () => {
     return;
   }
 
-  locationText.textContent = "Finding your area…";
-
+  locationText.textContent = "Finding your area uncovered…";
   navigator.geolocation.getCurrentPosition(
     () => {
       // A real project would send coordinates to a backend/geocoding service.

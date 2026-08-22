@@ -1,0 +1,287 @@
+/* --- SWISS X KERALA THEME VARIABLES --- */
+:root {
+  --kerala-dark-green: #062e1c;
+  --kerala-green: #0A5F38;
+  --kasavu-gold: #e2b93b;
+  --bg-cream: #f4f5f0;
+  --text-dark: #121814;
+  --text-muted: #718076;
+  --surface-white: #ffffff;
+  --border-subtle: #e2e8e4;
+  --radius-full: 9999px;
+  --radius-card: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Manjari', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 16px 90px;
+}
+
+/* --- FLOATING HEADER PILL --- */
+.topbar {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface-white);
+  border-radius: var(--radius-full);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: 20px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+}
+
+.brand-dot {
+  width: 9px;
+  height: 9px;
+  background: var(--kasavu-gold);
+  border-radius: 50%;
+}
+
+.location-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #edf3ee;
+  color: var(--kerala-green);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* --- MAIN AUTH CARD --- */
+.auth-wrapper {
+  width: 100%;
+  max-width: 480px;
+}
+
+.auth-hero-card {
+  background: var(--kerala-dark-green);
+  color: var(--surface-white);
+  border-radius: var(--radius-card);
+  padding: 32px 24px 28px;
+  box-shadow: 0 12px 36px rgba(6, 46, 28, 0.16);
+}
+
+.auth-headline {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #a8d5ba;
+  border: 1px solid rgba(168, 213, 186, 0.25);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+
+.auth-headline h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.auth-headline p {
+  font-size: 0.85rem;
+  color: #a3b8ac;
+  margin-top: 6px;
+}
+
+/* --- INSET SEGMENTED CONTROLS --- */
+.switch-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.segmented-control {
+  position: relative;
+  display: flex;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.segmented-control input {
+  display: none;
+}
+
+.segmented-control label {
+  flex: 1;
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #b5c7bc;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.25s ease;
+  user-select: none;
+}
+
+.slide-glider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  height: calc(100% - 8px);
+  width: calc(50% - 4px);
+  background: var(--surface-white);
+  border-radius: var(--radius-full);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Mode glider positions */
+#tab-login-btn:checked ~ .glider-auth { transform: translateX(0); }
+#tab-signup-btn:checked ~ .glider-auth { transform: translateX(100%); }
+#tab-login-btn:checked ~ label[for="tab-login-btn"],
+#tab-signup-btn:checked ~ label[for="tab-signup-btn"] { color: var(--kerala-dark-green); font-weight: 700; }
+
+/* Role glider positions */
+#role-user:checked ~ .glider-role { transform: translateX(0); }
+#role-shop:checked ~ .glider-role { transform: translateX(100%); }
+#role-user:checked ~ label[for="role-user"],
+#role-shop:checked ~ label[for="role-shop"] { color: var(--kerala-dark-green); font-weight: 700; }
+
+/* --- FORM FIELDS & INPUTS --- */
+.auth-form {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form.active-form {
+  display: flex;
+}
+
+.input-field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--surface-white);
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input-field::placeholder {
+  color: #7b9485;
+}
+
+.input-field:focus {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--kasavu-gold);
+}
+
+/* Submit Action Button */
+.btn-submit {
+  margin-top: 8px;
+  background: var(--kasavu-gold);
+  color: var(--kerala-dark-green);
+  border: none;
+  padding: 14px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-submit:hover {
+  filter: brightness(1.05);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+.form-footer-link {
+  text-align: center;
+  color: #a3b8ac;
+  font-size: 0.8rem;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.form-footer-link:hover {
+  color: var(--kasavu-gold);
+}
+
+/* --- FLOATING BOTTOM NAV BAR --- */
+.bottom-nav-pill {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--kasavu-gold);
+  border-radius: var(--radius-full);
+  padding: 6px;
+  display: flex;
+  gap: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  color: var(--kerala-dark-green);
+  font-size: 0.72rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.nav-item.active {
+  background: var(--kerala-dark-green);
+  color: var(--surface-white);
+}
+
+.nav-item svg {
+  width: 18px;
+  height: 18px;
+  margin-bottom: 2px;
+}
