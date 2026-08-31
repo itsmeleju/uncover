@@ -35,6 +35,5 @@ Open `index.html` in a browser, or use the VS Code Live Server extension.
 - Add Firebase/Supabase only if a database is required.
 - Add an admin page for uploading offers.
 
-Credits:  
-Front-end & Founder: [@itsmeleju](https://github.com/itsmeleju) (Leju George Jacob)   
+Special Thanks: 
 Back-end & Software Developer: A.K.I (Akhil Raju)
